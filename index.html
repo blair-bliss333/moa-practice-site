@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Museum of Outdoor Arts | Outdoor Sculpture Museum in Greenwood Village, CO</title>
+<meta name="description" content="The Museum of Outdoor Arts (MOA) places site-specific sculpture across Englewood and Greenwood Village, Colorado. See what's on, plan a visit to Marjorie Park or Madden Gallery, and explore the collection.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Museum",
+  "name": "Museum of Outdoor Arts",
+  "alternateName": "MOA",
+  "url": "https://moaonline.org/",
+  "telephone": "+1-303-806-0444",
+  "email": "info@moaonline.org",
+  "foundingDate": "1981",
+  "address": {"@type": "PostalAddress","streetAddress": "6363 S. Fiddler's Green Circle, Suite 110","addressLocality": "Greenwood Village","addressRegion": "CO","postalCode": "80111","addressCountry": "US"},
+  "openingHoursSpecification": [{"@type": "OpeningHoursSpecification","dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday"],"opens": "10:00","closes": "16:00","description": "Madden Gallery"}],
+  "sameAs": ["https://www.instagram.com/outdoorarts/"]
+}
+</script>
+<style>
+.hero{position:relative;min-height:min(78vh,680px);display:flex;align-items:flex-end;color:#fff;overflow:hidden}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:68% 30%}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,28,30,.72) 0%,rgba(20,28,30,.35) 45%,rgba(20,28,30,0) 70%),linear-gradient(180deg,rgba(20,28,30,0) 40%,rgba(20,28,30,.6) 100%)}
+.hero .wrap{position:relative;z-index:1;padding-bottom:56px;width:100%}
+.hero h1{font-size:clamp(38px,6vw,72px);line-height:1.02;margin:12px 0 14px;font-weight:700;max-width:13ch}
+.hero h1,.hero p{text-shadow:0 2px 18px rgba(0,0,0,.35)}
+.hero p{font-size:19px;max-width:52ch;margin:0 0 26px;opacity:.95}
+.hero .btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn.solid{background:#fff;color:var(--teal-deep)}
+.btn.ghost{border:1.5px solid rgba(255,255,255,.8);color:#fff}
+
+.today{margin-top:-40px;position:relative;z-index:2}
+.today-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.place{background:var(--card);border-radius:var(--radius);padding:22px 22px 20px;border:1px solid var(--line);box-shadow:0 10px 30px rgba(34,41,42,.07);display:flex;flex-direction:column}
+.place h3{margin:14px 0 4px;font-size:21px}
+.place p{margin:0 0 14px;color:var(--muted);font-size:15.5px}
+.place p a{color:var(--teal)}
+.place .more{margin-top:auto;font-weight:500;color:var(--teal);text-decoration:none;font-size:15.5px}
+.place .more:hover{text-decoration:underline}
+
+.events{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.ev{background:var(--card);border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);display:flex;flex-direction:column;text-decoration:none}
+.ev img{aspect-ratio:3/2;object-fit:cover;width:100%}
+.ev .body{padding:18px 20px 20px;display:flex;flex-direction:column;flex:1}
+.date{color:var(--rust);font-weight:700;font-size:14.5px;letter-spacing:.04em;text-transform:uppercase}
+.ev h3{font-size:20px;margin:6px 0 6px;line-height:1.25}
+.ev p{margin:0;color:var(--muted);font-size:15px}
+.ev .tag{margin-top:auto;padding-top:14px;font-size:13.5px;font-weight:500;color:var(--teal)}
+.ev:hover h3{text-decoration:underline}
+.ev.lead{grid-column:span 2;flex-direction:row}
+.ev.lead img{width:58%;aspect-ratio:auto;height:100%}
+.ev.lead .body{padding:28px}
+.ev.lead h3{font-size:28px}
+.empty{display:none;background:var(--card);border:1px dashed var(--line);border-radius:var(--radius);padding:28px;color:var(--muted)}
+
+.coll{display:grid;grid-template-columns:1.3fr 1fr 1fr;grid-template-rows:auto auto;gap:20px}
+.tile{position:relative;border-radius:var(--radius);overflow:hidden;color:#fff;text-decoration:none;min-height:240px;display:flex;align-items:flex-end}
+.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.tile:hover img{transform:scale(1.04)}
+.tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(20,28,30,.8))}
+.tile div{position:relative;z-index:1;padding:20px}
+.tile h3{margin:0;font-size:22px}
+.tile p{margin:4px 0 0;font-size:14.5px;opacity:.92}
+.tile.big{grid-row:span 2;min-height:500px}
+.tile.big h3{font-size:30px}
+.always{display:inline-block;background:var(--gold);color:#fff;font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;margin-bottom:10px}
+
+.prog{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.pcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;text-decoration:none;display:flex;flex-direction:column}
+.pcard .num{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-weight:700;color:#fff;margin-bottom:14px}
+.pcard h3{margin:0 0 6px;font-size:19px}
+.pcard p{margin:0;color:var(--muted);font-size:15px}
+.pcard:hover h3{text-decoration:underline}
+
+.join{background:var(--teal);color:#fff;border-radius:22px;padding:48px;display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center}
+.join h2{font-size:clamp(28px,3.4vw,40px);margin:8px 0 12px;line-height:1.1}
+.join p{margin:0;opacity:.9;max-width:44ch}
+.join .eyebrow{color:var(--gold-tint)}
+.ways{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ways a{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:16px;text-decoration:none}
+.ways a:hover{background:rgba(255,255,255,.18)}
+.ways b{display:block;font-weight:500}
+.ways small{opacity:.8;font-size:13.5px}
+.ways a.primary{background:var(--gold);border-color:var(--gold)}
+.faq{display:grid;grid-template-columns:repeat(2,1fr);gap:0 40px}
+
+@media (max-width:980px){
+  .today-grid,.events,.prog{grid-template-columns:1fr 1fr}
+  .ev.lead{grid-column:span 2}
+  .coll{grid-template-columns:1fr 1fr}
+  .tile.big{grid-row:auto;grid-column:span 2;min-height:320px}
+  .join{grid-template-columns:1fr;padding:32px}
+}
+@media (max-width:640px){
+  .hero{min-height:560px}
+  .hero .wrap{padding-bottom:64px}
+  .hero::after{background:linear-gradient(180deg,rgba(20,28,30,.25) 0%,rgba(20,28,30,.55) 35%,rgba(20,28,30,.82) 100%)}
+  .hero .eyebrow{font-size:11.5px}
+  .today-grid,.events,.prog,.coll,.faq,.ways{grid-template-columns:1fr}
+  .ev.lead{grid-column:auto;flex-direction:column}
+  .ev.lead img{width:100%;aspect-ratio:3/2}
+  .ev.lead .body{padding:18px 20px 20px}.ev.lead h3{font-size:22px}
+  .tile.big{grid-column:auto}
+  .join{padding:28px 20px}
+}
+</style>
+</head>
+<body data-section="" data-home="a">
+<main id="content">
+  <section class="hero">
+    <img src="https://moaonline.org/wp-content/uploads/2026/04/MP-Haus-Music-10.08.22-049.jpeg" alt="Two performers on stilts with golden wings at an evening event in Marjorie Park">
+    <div class="wrap">
+      <div class="eyebrow">Museum of Outdoor Arts · Greenwood Village, Colorado</div>
+      <h1>Making art a part of everyday life.</h1>
+      <p>A museum without walls. More than 90 outdoor works live in parks, plazas and public spaces across Englewood and Greenwood Village, and many of them are free to see any day of the year.</p>
+      <div class="btns">
+        <a class="btn solid" href="#whats-on">See what's on</a>
+        <a class="btn ghost" href="visit.html">Plan a visit</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Answers the three questions every visitor arrives with: can I come, where, when -->
+  <section class="today" id="today" aria-label="Visit today">
+    <div class="wrap today-grid">
+      <div class="place">
+        <span class="status s-open"><i></i>Always open</span>
+        <h3>Public art collection</h3>
+        <p>Walk the sculptures in Englewood and around Greenwood Plaza any time, day or night. Free.</p>
+        <a class="more" href="collection.html?open=1">Find the art &rarr;</a>
+      </div>
+      <div class="place">
+        <span class="status" id="madden-status"><i></i>Checking hours</span>
+        <h3>Madden Gallery</h3>
+        <p>Tuesday to Friday, 10am to 4pm. Free admission.<br>6363 S. Fiddler's Green Circle, Suite 110</p>
+        <a class="more" href="visit.html#madden-gallery">Gallery details &rarr;</a>
+      </div>
+      <div class="place">
+        <span class="status s-event" id="park-status"><i></i>Open for events and tours</span>
+        <h3>Marjorie Park</h3>
+        <p id="park-next">Open for events, scheduled tours and SCFD Free Days, and to members by appointment.</p>
+        <a class="more" href="visit.html#marjorie-park">Park details &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="whats-on">
+    <div class="wrap">
+      <div class="head">
+        <div><div class="eyebrow">What's on</div><h2>Coming up at MOA</h2></div>
+        <a href="https://moaonline.org/events/">All events &rarr;</a>
+      </div>
+      <div class="events" id="events"></div>
+      <div class="empty" id="events-empty">New events are on the way. Join the newsletter at the bottom of this page and you'll hear first.</div>
+    </div>
+  </section>
+
+  <section class="block" id="art">
+    <div class="wrap">
+      <div class="head">
+        <div><div class="eyebrow">The art</div><h2>A museum without walls</h2></div>
+        <a href="collection.html">Explore the collection &rarr;</a>
+      </div>
+      <div class="coll">
+        <a class="tile big" href="collection.html?place=marjorie">
+          <img src="https://moaonline.org/wp-content/uploads/2020/09/Tea-Party-Fresh-Wax-8-2017-by-Tadd-Moskal-e1634149019917-600x400.jpg" alt="Bronze sculpture of the Mad Tea Party from Alice in Wonderland">
+          <div><h3>Marjorie Park</h3><p>The sculpture garden and home of the Alice in Wonderland bronzes. Open for events, tours and Free Days.</p></div>
+        </a>
+        <a class="tile" href="collection.html?place=englewood">
+          <img src="https://moaonline.org/wp-content/uploads/2020/09/MOAWalkingTour1345.4.21.14-600x400.jpg" alt="Bronze sculpture of a woman in repose by Tom Ware">
+          <div><span class="always">Free · Open 24/7</span><h3>Englewood</h3><p>Around the Civic Center and South Broadway</p></div>
+        </a>
+        <a class="tile" href="collection.html?place=fiddlers">
+          <img src="https://moaonline.org/wp-content/uploads/2022/05/AJ-Mural-Final-06.07.22-0010-scaled-e1654788755512-600x400.jpg" alt="Orange and white fox mural with mushrooms and flowers by AJ Davis">
+          <div><h3>Amphitheatre Murals</h3><p>Fiddler's Green Amphitheatre</p></div>
+        </a>
+        <a class="tile" href="collection.html?place=plaza">
+          <img src="https://moaonline.org/wp-content/uploads/2020/09/DSC_0463-scaled-e1602192226273-600x400.jpg" alt="Five Dolphins by Giovanni Antoniazzi">
+          <div><span class="always">Free · Open 24/7</span><h3>Greenwood Plaza</h3><p>And Westlands Park</p></div>
+        </a>
+        <a class="tile" href="https://moaonline.org/cabinet-of-curiosities-and-impossibilities/">
+          <img src="https://moaonline.org/wp-content/uploads/2020/09/CabPressPics-04.26.24-137-600x400.jpg" alt="Inside the Cabinet of Curiosities and Impossibilities">
+          <div><h3>Cabinet of Curiosities</h3><p>Lonnie Hanzon's masterwork, by guided tour</p></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="programs">
+    <div class="wrap">
+      <div class="head"><div><div class="eyebrow">Programs</div><h2>Where new work gets made</h2></div></div>
+      <div class="prog">
+        <a class="pcard" href="https://moaonline.org/design-and-build/"><span class="num" style="background:var(--gold)">1</span><h3>Design and Build</h3><p>The national student competition, and the summer internship that built Striking Sparks.</p></a>
+        <a class="pcard" href="https://moaonline.org/artists-in-residence/"><span class="num" style="background:var(--teal)">2</span><h3>Artists in Residence</h3><p>Artists making new work on site at MOA.</p></a>
+        <a class="pcard" href="https://moaonline.org/film/"><span class="num" style="background:var(--rust)">3</span><h3>Film</h3><p>Screenings and film projects from MOA.</p></a>
+        <a class="pcard" href="https://moaonline.org/pop-up-art/"><span class="num" style="background:var(--teal-deep)">4</span><h3>Pop-up Art</h3><p>Art that appears where you least expect it.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="join">
+    <div class="wrap">
+      <div class="join">
+        <div>
+          <div class="eyebrow">Join and give</div>
+          <h2>Keep art in everyday life.</h2>
+          <p>Members tour free, get into member events, and visit Marjorie Park by appointment. Every membership supports exhibitions, conservation and education.</p>
+        </div>
+        <div class="ways">
+          <a class="primary" href="https://moaonline.org/membership/"><b>Become a member</b><small>Annual and corporate levels</small></a>
+          <a href="https://moaonline.org/donate/"><b>Donate</b><small>Support the collection</small></a>
+          <a href="https://moaonline.org/volunteer-employment/"><b>Volunteer</b><small>And open jobs</small></a>
+          <a href="https://moaonline.org/sponsorship/"><b>Sponsor</b><small>Events and programs</small></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="faq">
+    <div class="wrap">
+      <div class="head"><div><div class="eyebrow">Good to know</div><h2>Questions visitors ask</h2></div><a href="visit.html#faq">All FAQs &rarr;</a></div>
+      <div class="faq">
+        <details class="q"><summary>Is the Museum of Outdoor Arts free?</summary><p>The art in public places and Madden Gallery are free, and Marjorie Park is free on SCFD Free Days. Events and guided tours are ticketed, and members tour free.</p></details>
+        <details class="q"><summary>When is Marjorie Park open?</summary><p>During events, scheduled tours and SCFD Free Days, and to members by appointment. It has no regular daily hours.</p></details>
+        <details class="q"><summary>Where is MOA?</summary><p>Madden Gallery and MOA headquarters are at 6363 S. Fiddler's Green Circle, Suite 110, Greenwood Village, CO 80111. Marjorie Park is next door at 6331 S. Fiddler's Green Circle.</p></details>
+        <details class="q"><summary>How much is a tour?</summary><p>Guided tours of Marjorie Park and the Cabinet of Curiosities are $20 for adults and $10 for youth 2 to 17. Members tour free. <a href="visit.html#tours">See all tour prices</a>.</p></details>
+        <details class="q"><summary>Can I rent Marjorie Park for an event?</summary><p>Yes. Marjorie Park, Madden Gallery and the Cabinet of Curiosities are all available for weddings, private parties and corporate events.</p></details>
+        <details class="q"><summary>Can I see the sculptures at night?</summary><p>Yes. The works in public spaces across Englewood and Greenwood Village are outdoors and accessible 24/7.</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="site.js"></script>
+<script>
+const box=document.getElementById("events"), live=liveEvents();
+if(!live.length) document.getElementById("events-empty").style.display="block";
+live.slice(0,5).forEach((e,i)=>{
+  const a=document.createElement("a"); a.className="ev"+(i===0?" lead":""); a.href=e.url;
+  a.innerHTML=`<img src="${IMG(e.img)}" alt="" loading="lazy"><div class="body"><div class="date">${dateLabel(e)}</div><h3>${e.title}</h3><p>${e.kind}</p>${e.blurb&&i<3?`<p style="margin-top:8px">${e.blurb}</p>`:""}<span class="tag">${e.cta||"Learn more"} &rarr;</span></div>`;
+  box.appendChild(a);
+});
+/* Never leave a hole in the grid: if the last row is short, the last card widens to fill it */
+const shown=Math.min(live.length,5);
+if(shown>2 && (shown-2)%3===2) box.lastElementChild.classList.add("lead");
+
+const m=maddenStatus(), ms=document.getElementById("madden-status");
+ms.className="status "+m.cls; ms.innerHTML="<i></i>"+m.text;
+const p=parkNext(), ps=document.getElementById("park-status");
+ps.className="status "+p.cls; ps.innerHTML="<i></i>"+p.text;
+if(p.next) document.getElementById("park-next").innerHTML=`Next: <a href="${p.next.url}">${p.next.what}</a>. Also open for scheduled tours, and to members by appointment.`;
+</script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plan Your Visit | Museum of Outdoor Arts, Greenwood Village and Englewood, CO</title>
+<meta name="description" content="Hours, addresses, parking, tour prices and SCFD Free Days for the Museum of Outdoor Arts: Marjorie Park, Madden Gallery, and free public sculpture in Englewood and Greenwood Village.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+.jump{display:flex;gap:8px;flex-wrap:wrap;margin:26px 0 0}
+.jump a{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 16px;text-decoration:none;font-size:15px;font-weight:500;color:var(--teal)}
+.jump a:hover{border-color:var(--teal)}
+.places{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+.pl{padding:22px;display:flex;flex-direction:column}
+.pl h3{margin:14px 0 2px;font-size:21px}
+.pl .when{font-weight:500;margin:0 0 6px}
+.pl p{margin:0;color:var(--muted);font-size:15.5px}
+.pl a.more{margin-top:14px;color:var(--teal);font-weight:500;text-decoration:none}
+.pl a.more:hover{text-decoration:underline}
+.loc{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:start}
+.loc img{border-radius:var(--radius);width:100%;aspect-ratio:4/3;object-fit:cover}
+.loc h2{font-size:clamp(28px,3.4vw,40px);line-height:1.1;margin:6px 0 12px}
+.loc .eyebrow{color:var(--rust)}
+.facts{list-style:none;padding:0;margin:18px 0 0}
+.facts li{padding:12px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:120px 1fr;gap:14px;font-size:16px}
+.facts li b{font-weight:500;color:var(--teal)}
+.facts li a{color:var(--teal)}
+.days{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.days span{background:var(--gold-tint);color:#5E5016;border-radius:10px;padding:6px 11px;font-size:14.5px;font-weight:500}
+.days span.past{background:#EEECE6;color:#9A9F9F;text-decoration:line-through;font-weight:400}
+.days span.next{background:var(--gold);color:#fff}
+.tours{display:grid;grid-template-columns:1.2fr 1fr;gap:24px}
+.tours .card{padding:26px}
+.tours h3{margin:0 0 4px;font-size:20px}
+.tours .sub{color:var(--muted);font-size:15px;margin:0 0 10px}
+.note{font-size:14.5px;color:var(--muted);margin:14px 0 0}
+.know{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.know .card{padding:20px}
+.know h3{margin:0 0 6px;font-size:17px}
+.know p{margin:0;color:var(--muted);font-size:15px}
+.faq{display:grid;grid-template-columns:repeat(2,1fr);gap:0 40px}
+.contact{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.contact .card{padding:20px}
+.contact b{display:block;font-weight:500;margin-bottom:4px}
+.contact a{color:var(--teal);font-weight:500}
+.contact span{color:var(--muted);font-size:14.5px}
+@media (max-width:980px){.places,.know{grid-template-columns:1fr 1fr}.loc,.tours{grid-template-columns:1fr;gap:24px}.contact{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.places,.know,.faq,.contact{grid-template-columns:1fr}.facts li{grid-template-columns:1fr;gap:2px}}
+</style>
+</head>
+<body data-section="visit">
+<main id="content" class="wrap">
+  <div class="crumbs"><a href="index.html">Home</a> / Visit</div>
+  <div class="pagehead">
+    <div class="eyebrow">Plan your visit</div>
+    <h1>Three ways to see MOA</h1>
+    <p class="lede">The public art is open around the clock. Madden Gallery keeps weekday hours. Marjorie Park opens for events, tours and Free Days. Here is what's open, and when.</p>
+    <nav class="jump" aria-label="On this page">
+      <a href="#marjorie-park">Marjorie Park</a><a href="#madden-gallery">Madden Gallery</a><a href="#public-art">Public art</a><a href="#tours">Tours and prices</a><a href="#know">Good to know</a><a href="#faq">FAQs</a><a href="#contact">Contact</a>
+    </nav>
+  </div>
+
+  <div class="places">
+    <div class="card pl"><span class="status s-open"><i></i>Always open</span><h3>Public art</h3><p class="when">24/7, free</p><p>Englewood and Greenwood Plaza. Westlands Park, dawn to dusk.</p><a class="more" href="#public-art">Where to find it &rarr;</a></div>
+    <div class="card pl"><span class="status" id="madden-status"><i></i>Checking</span><h3>Madden Gallery</h3><p class="when">Tue to Fri, 10am to 4pm, free</p><p>Plus select Saturdays, 12 to 5pm.</p><a class="more" href="#madden-gallery">Gallery details &rarr;</a></div>
+    <div class="card pl"><span class="status" id="park-status"><i></i>Checking</span><h3>Marjorie Park</h3><p class="when" id="park-when">Events, tours and Free Days</p><p>And members by appointment.</p><a class="more" href="#marjorie-park">Park details &rarr;</a></div>
+  </div>
+
+  <section class="block loc" id="marjorie-park">
+    <div>
+      <div class="eyebrow">Greenwood Village</div>
+      <h2>Marjorie Park</h2>
+      <p>MOA's sculpture garden, home of the Alice in Wonderland bronzes and the Cabinet of Curiosities and Impossibilities. The park has no regular daily hours. It opens for events, scheduled tours and SCFD Free Days, and to members by appointment. Concert ticket holders at Fiddler's Green Amphitheatre can walk in once the venue's doors open.</p>
+      <ul class="facts">
+        <li><b>Address</b><span>6331 S. Fiddler's Green Circle, Greenwood Village, CO 80111 · <a href="https://maps.google.com/?q=6331+S+Fiddlers+Green+Circle+Greenwood+Village+CO+80111">Directions</a></span></li>
+        <li><b>Parking</b><span>Free street and lot parking. During amphitheatre concerts, street parking is limited and paid lots are open.</span></li>
+        <li><b>Light rail</b><span>Arapahoe Light Rail Station</span></li>
+        <li><b>Access</b><span>Wheelchair accessible. Strollers welcome.</span></li>
+      </ul>
+      <h3 id="free-days" style="margin:30px 0 4px;font-size:20px">2026 SCFD Free Days</h3>
+      <p style="margin:0;color:var(--muted);font-size:15.5px">Marjorie Park opens to everyone, free, 10am to 4pm. Thank you to SCFD. Registration required.</p>
+      <div class="days" id="days"></div>
+      <p style="margin:16px 0 0"><a class="btn rust" href="https://moaonline.org/greenwood/">Register for a Free Day</a></p>
+    </div>
+    <img src="https://moaonline.org/wp-content/uploads/2026/04/UnCorkedWednesday-08.07.24-520-600x400.jpg" alt="Guests at an evening event in Marjorie Park">
+  </section>
+
+  <section class="block loc" id="madden-gallery">
+    <img src="https://moaonline.org/wp-content/uploads/2025/08/ViewfindersPress-08.13.26-016-2-600x400.jpg" alt="Inside Madden Gallery during the VIEWFINDERS exhibition">
+    <div>
+      <div class="eyebrow">Greenwood Village</div>
+      <h2>Madden Gallery</h2>
+      <p>MOA's indoor gallery, nearly 10,000 square feet inside the Palazzo Verdi building. Admission is always free.</p>
+      <ul class="facts">
+        <li><b>Hours</b><span>Tuesday to Friday, 10am to 4pm. Select Saturdays, 12 to 5pm (call to confirm). Closed between exhibitions while art is installed.</span></li>
+        <li><b>Address</b><span>6363 S. Fiddler's Green Circle, Suite 110, Greenwood Village, CO 80111 · <a href="https://maps.google.com/?q=6363+S+Fiddlers+Green+Circle+Greenwood+Village+CO+80111">Directions</a></span></li>
+        <li><b>On view</b><span><a href="https://moaonline.org/viewfinders/">VIEWFINDERS: A Colorado Photography Exhibition</a>, through October 23, 2026</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block loc" id="public-art">
+    <div>
+      <div class="eyebrow">Free · Open 24/7</div>
+      <h2>Art in public places</h2>
+      <p>Much of the collection lives outside Marjorie Park, in spaces anyone can walk into, any hour of any day. No ticket, no appointment.</p>
+      <ul class="facts">
+        <li><b>Englewood</b><span>About 30 works around the Englewood Civic Center and South Broadway between Yale and Hampden. Englewood Light Rail Station. Free parking south of the Civic Center. A few pieces are indoors, open during building hours.</span></li>
+        <li><b>Greenwood Plaza</b><span>Sculpture throughout the business district around Fiddler's Green Circle.</span></li>
+        <li><b>Westlands Park</b><span>5701 S. Quebec St., Greenwood Village. Dawn to dusk.</span></li>
+        <li><b>How long</b><span>30 minutes to an hour in either city. Three to four hours to see it all.</span></li>
+      </ul>
+      <p style="margin:18px 0 0;display:flex;gap:10px;flex-wrap:wrap"><a class="btn rust" href="collection.html?open=1">See what's open 24/7</a><a class="btn line" href="https://moaonline.org/tours/">Walking tour map</a></p>
+    </div>
+    <img src="https://moaonline.org/wp-content/uploads/2020/09/MOAWalkingTour1345.4.21.14-600x400.jpg" alt="Bronze sculpture of a woman in repose by Tom Ware in Englewood">
+  </section>
+
+  <section class="block" id="tours">
+    <div class="head"><div><div class="eyebrow">Tours</div><h2>Tours and prices</h2></div></div>
+    <div class="tours">
+      <div class="card">
+        <h3>Guided tour of Marjorie Park</h3>
+        <p class="sub">About one hour, including the Cabinet of Curiosities and Impossibilities. Meet at Marjorie Park. Book at least 24 hours ahead.</p>
+        <table class="price">
+          <tr><td>Adult (18+)</td><td>$20</td></tr>
+          <tr><td>Youth (2 to 17)</td><td>$10</td></tr>
+          <tr><td>Add the Living Wall and East Alley Artwalk</td><td>+$10 adult · +$5 youth</td></tr>
+          <tr><td>Groups of 10 or more, guided</td><td>$10 each</td></tr>
+          <tr><td>MOA members</td><td>Free</td></tr>
+        </table>
+        <p style="margin:18px 0 0"><a class="btn rust" href="https://moaonline.org/tours/">Choose a date</a></p>
+      </div>
+      <div class="card">
+        <h3>Self-guided</h3>
+        <p class="sub">Go at your own pace with the walking tour map.</p>
+        <table class="price">
+          <tr><td>Marjorie Park, by appointment</td><td>$5</td></tr>
+          <tr><td>Marjorie Park, members</td><td>Free</td></tr>
+          <tr><td>During any public event at the park</td><td>Included</td></tr>
+          <tr><td>Englewood and Greenwood Plaza</td><td>Free, any time</td></tr>
+        </table>
+        <p class="note">Self-guided visits to Marjorie Park don't include the Cabinet of Curiosities, which is open by guided tour only. Schools and groups: call 303-806-0444 ext. 301.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="know">
+    <div class="head"><div><div class="eyebrow">Before you go</div><h2>Good to know</h2></div></div>
+    <div class="know">
+      <div class="card"><h3>Food and drink</h3><p>Picnics are welcome in the Englewood spaces. Each Marjorie Park event says whether you can bring food. Outside alcohol isn't allowed in the park; most events sell drinks.</p></div>
+      <div class="card"><h3>Nearby coffee</h3><p>Mangia Bevi Cafe near Marjorie Park. Nixon's Coffee House near the Englewood Civic Center.</p></div>
+      <div class="card"><h3>Photos</h3><p>Yes, please. Tag us @outdoorarts.</p></div>
+      <div class="card"><h3>Pets</h3><p>Only leashed service animals in Marjorie Park. Local rules apply where the art is in public places.</p></div>
+      <div class="card"><h3>Bags</h3><p>There are no lockers. Please leave large bags in your car.</p></div>
+      <div class="card"><h3>Accessibility</h3><p>Marjorie Park is ADA accessible. The Englewood Civic Center has elevators at both entrances. MOA doesn't lend wheelchairs.</p></div>
+    </div>
+  </section>
+
+  <section class="block" id="faq">
+    <div class="head"><div><div class="eyebrow">FAQs</div><h2>Questions visitors ask</h2></div></div>
+    <div class="faq">
+      <details class="q"><summary>Is the Museum of Outdoor Arts free?</summary><p>The art in public places and Madden Gallery are always free, and Marjorie Park is free on SCFD Free Days. Events and guided tours are ticketed.</p></details>
+      <details class="q"><summary>When is Marjorie Park open?</summary><p>During events, scheduled tours and SCFD Free Days, and to members by appointment.</p></details>
+      <details class="q"><summary>Do you offer discounts?</summary><p>Members get discounted rates and member-only deals. Seasonal offers go out in the newsletter and on Instagram.</p></details>
+      <details class="q"><summary>Is there a cafe?</summary><p>Not on site. Most Marjorie Park events have food trucks or concessions.</p></details>
+      <details class="q"><summary>How do I show my art at MOA?</summary><p>MOA offers outdoor exhibition opportunities by artist call or invitation.</p></details>
+      <details class="q"><summary>How is MOA connected to Fiddler's Green Amphitheatre?</summary><p>MOA owns Fiddler's Green Amphitheatre and runs it in partnership with its tenant, AEG. For concert questions call 303-220-7000.</p></details>
+      <details class="q"><summary>Can I rent a venue?</summary><p>Yes. Marjorie Park, Madden Gallery and the Cabinet of Curiosities host weddings, parties and corporate events. <a href="https://moaonline.org/venue-rentals/">See venues</a>.</p></details>
+      <details class="q"><summary>Can I visit on a weekend?</summary><p>Marjorie Park opens on weekends for events. Madden Gallery opens select Saturdays; call to confirm. The public art is always open.</p></details>
+    </div>
+  </section>
+
+  <section class="block" id="contact">
+    <div class="head"><div><div class="eyebrow">Contact</div><h2>Talk to a person</h2></div></div>
+    <div class="contact">
+      <div class="card"><b>General</b><a href="tel:+13038060444">303-806-0444</a><br><span>Office: Mon to Fri, 9am to 5pm</span></div>
+      <div class="card"><b>Tours</b><a href="tel:+13038060444">303-806-0444 ext. 301</a><br><span>Schools and groups</span></div>
+      <div class="card"><b>Amphitheatre concerts</b><a href="tel:+13032207000">303-220-7000</a><br><span>Fiddler's Green box office</span></div>
+      <div class="card"><b>Email</b><a href="mailto:info@moaonline.org">info@moaonline.org</a><br><span>Mail: 6363 S. Fiddler's Green Circle, Suite 110</span></div>
+    </div>
+  </section>
+</main>
+
+<script src="site.js"></script>
+<script>
+const m=maddenStatus(), ms=document.getElementById("madden-status");
+ms.className="status "+m.cls; ms.innerHTML="<i></i>"+m.text;
+const p=parkNext(), ps=document.getElementById("park-status");
+ps.className="status "+p.cls; ps.innerHTML="<i></i>"+p.text;
+if(p.next) document.getElementById("park-when").textContent="Next: "+p.next.what;
+/* Free Days: past dates fade out, the next one is highlighted */
+const nextFree=FREE_DAYS.map(toDate).find(d=>d>=TODAY);
+document.getElementById("days").innerHTML=FREE_DAYS.map(s=>{const d=toDate(s);
+  const cls=d<TODAY?"past":(+d===+nextFree?"next":"");
+  return `<span class="${cls}">${fmt(d,{month:"short",day:"numeric"})}</span>`}).join("");
+</script>
+</body>
+</html>

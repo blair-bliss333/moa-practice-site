@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Collection | Outdoor Sculpture in Englewood and Greenwood Village | Museum of Outdoor Arts</title>
+<meta name="description" content="Explore the Museum of Outdoor Arts collection by place: Marjorie Park, Greenwood Plaza, Westlands Park, Fiddler's Green Amphitheatre, Madden Gallery and Englewood. Filter to art you can see right now, free, 24/7.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+.tools{position:sticky;top:76px;z-index:5;background:var(--paper);padding:16px 0;margin-top:20px;border-bottom:1px solid var(--line)}
+.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.search{flex:1;min-width:220px;position:relative}
+.search input{width:100%;font:inherit;padding:12px 16px 12px 42px;border-radius:999px;border:1px solid var(--line);background:#fff}
+.search svg{position:absolute;left:15px;top:50%;transform:translateY(-50%);width:18px;height:18px}
+.toggle{display:flex;align-items:center;gap:10px;font-weight:500;font-size:15.5px;cursor:pointer;user-select:none;background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 16px}
+.toggle input{width:18px;height:18px;accent-color:var(--gold)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.chips button{font:inherit;font-size:15px;font-weight:500;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 15px;cursor:pointer;color:var(--ink)}
+.chips button[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:#fff}
+.chips button small{opacity:.7;margin-left:4px}
+.count{color:var(--muted);font-size:15px;margin:18px 0 14px}
+.where{display:none;padding:16px 20px;margin-bottom:18px}
+.where b{font-weight:500}
+.where p{margin:4px 0 0;color:var(--muted);font-size:15px}
+.where a{color:var(--teal);font-weight:500}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.work{text-decoration:none;display:flex;flex-direction:column}
+.work .ph{position:relative;border-radius:12px;overflow:hidden;background:#E7E3DA}
+.work img{aspect-ratio:1;object-fit:cover;width:100%;transition:transform .4s}
+.work:hover img{transform:scale(1.04)}
+.work .badge{position:absolute;left:10px;top:10px;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:999px}
+.b-open{background:var(--gold);color:#fff}.b-park{background:rgba(255,255,255,.92);color:var(--teal)}
+.work b{display:block;font-weight:500;font-size:16px;margin-top:10px;line-height:1.3}
+.work span{color:var(--muted);font-size:14px}
+.work:hover b{text-decoration:underline}
+.none{display:none;padding:28px;text-align:center;color:var(--muted)}
+@media (max-width:980px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:640px){.tools{top:68px}.grid{grid-template-columns:1fr 1fr;gap:14px}.chips{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px}.chips button{white-space:nowrap}}
+</style>
+</head>
+<body data-section="art">
+<main id="content" class="wrap">
+  <div class="crumbs"><a href="index.html">Home</a> / The Art</div>
+  <div class="pagehead">
+    <div class="eyebrow">The collection</div>
+    <h1>A museum without walls</h1>
+    <p class="lede">Sculpture placed in parks, plazas and public spaces across two cities. Pick a place, search an artist, or switch on "Open 24/7" to see only what you can visit right now, free.</p>
+  </div>
+
+  <div class="tools">
+    <div class="row">
+      <label class="search"><svg viewBox="0 0 24 24" fill="none" stroke="#5E6869" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="q" type="search" placeholder="Search a title or artist" aria-label="Search the collection"></label>
+      <label class="toggle"><input type="checkbox" id="open"> Open 24/7 only</label>
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="Filter by place"></div>
+  </div>
+
+  <p class="count" id="count"></p>
+  <div class="card where" id="where"></div>
+  <div class="grid" id="grid"></div>
+  <div class="card none" id="none">Nothing matches that search. Try an artist's last name, like Marinsky or Antoniazzi.</div>
+</main>
+
+<script src="site.js"></script>
+<script>
+const PLACES = {
+  marjorie:{name:"Marjorie Park", city:"greenwood", open:false, info:"Open for events, scheduled tours and SCFD Free Days, and to members by appointment.", link:["visit.html#marjorie-park","Plan a park visit"]},
+  plaza:{name:"Greenwood Plaza and Westlands Park", city:"greenwood", open:true, info:"In public spaces around Fiddler's Green Circle, open 24/7. Westlands Park (5701 S. Quebec St.) is open dawn to dusk.", link:["https://moaonline.org/tours/","Walking tour map"]},
+  fiddlers:{name:"Fiddler's Green Amphitheatre", city:"greenwood", open:false, info:"Murals and installations at the amphitheatre, 6350 Greenwood Plaza Blvd.", link:["https://moaonline.org/fiddlers-green/","About the amphitheatre"]},
+  madden:{name:"Madden Gallery", city:"greenwood", open:false, info:"Inside Palazzo Verdi. Tuesday to Friday, 10am to 4pm, free.", link:["visit.html#madden-gallery","Gallery details"]},
+  englewood:{name:"Englewood", city:"englewood", open:true, info:"Around the Englewood Civic Center and South Broadway, open 24/7. A few pieces are indoors at the Civic Center, open during building hours.", link:["https://moaonline.org/tours/","Walking tour map"]}
+};
+/* [title, artist, place, live page slug, image, indoor] */
+const W = [
+ ["Alice & The Caterpillar","Harry Marinsky","marjorie","alice-the-caterpillar-by-harry-marinsky","2020/10/DSC_3443-e1602014320269-600x400.jpg"],
+ ["Alice & The Cheshire Cat","Harry Marinsky","marjorie","LOCAL:artwork-cheshire-cat.html","2021/06/CheshireCat-04.28.21-001-600x400.jpg"],
+ ["Biography","Neil Goodman","marjorie","biography-by-neil-goodman","2020/10/MP-Grand-Opening-06.12.21-742-scaled-e1624380403426-600x400.jpg"],
+ ["Chloe","Roger Leitner","marjorie","chloe-by-roger-leitner","2021/10/Chloe-06.08.21-010-600x400.jpg"],
+ ["Departure","George Lundeen","marjorie","departure-by-george-lundeen","2020/10/IMG_8590-600x400.jpeg"],
+ ["Dialogue Bench","Kristine Smock","marjorie","dialogue-bench-kristine-smock","2020/10/Smock-Bench.jpg"],
+ ["Estacas","Ken Bortolazzo","marjorie","estacas-by-ken-bortolazzo","2020/10/IMG_8451-600x400.jpg"],
+ ["Etruscan Chimera","","marjorie","etruscan-chimera","2020/09/DSC_1200-rotated-e1602085117305-600x400.jpg"],
+ ["Eye of the Storm","AJ Davis","marjorie","eye-of-the-storm-by-aj-davis","2022/07/1-3-600x400.jpeg"],
+ ["Friends Bench","Patty Ortiz","marjorie","friends-bench-by-patty-ortiz","2020/10/Ortiz_Bench_prjeax-1-600x400.jpeg"],
+ ["La Fontaine Aux Oiseaux","Jean-Michel Folon","marjorie","la-fontaine-aux-oiseaux-by-jean-michel-folon","2020/09/IMG_0968-e1602096713106-600x400.jpg"],
+ ["Leoni Sdraito","Giovanni Antoniazzi","marjorie","leoni-sdraito","2020/09/DSC_1208-e1602086083822-600x400.jpg"],
+ ["Lions of Lucca","","marjorie","lions-of-lucca","2020/09/DSC_1193-e1602086843542-600x400.jpg"],
+ ["Marzocco Lion","","marjorie","marzocco-lion","2020/09/DSC_1220-rotated-e1602087455780-600x400.jpg"],
+ ["Medici Lion","","marjorie","medici-lion","2020/09/DSC_1196-e1602088832551-600x400.jpg"],
+ ["Old Father William","Harry Marinsky","marjorie","old-father-william-by-harry-marinsky","2020/10/DSC_3448-e1602085613159-600x400.jpg"],
+ ["Puppet Theatre Bench","Lonnie Hanzon","marjorie","puppet-theatre-bench-by-lonnie-hanzon","2020/10/IMG_2244-600x400.jpeg"],
+ ["Queen of Hearts","Harry Marinsky","marjorie","queen-of-hearts-by-harry-marinsky","2021/06/QueenOfHearts-003-scaled-e1634146940297-600x400.jpg"],
+ ["Resistance","Leslie Temple","marjorie","resistance-by-leslie-temple","2020/10/IMG_2160-600x400.jpeg"],
+ ["The Walrus and the Carpenter","Harry Marinsky","marjorie","the-walrus-and-the-carpenter-by-harry-marinsky","2020/10/WalrusCarpenter-04.28.21-001-scaled-e1634147391340-600x400.jpg"],
+ ["Three Gossips","Harry Marinsky","marjorie","three-gossips-by-harry-marinsky","2020/10/Gossips-06.23.21-005-600x400.jpg"],
+ ["Two Open Trapezoids: Excentric V","George Rickey","marjorie","two-open-trapezoids-excentric-v-by-george-rickey","2020/10/Screen-Shot-2021-06-22-at-10.32.18-AM-600x400.png"],
+ ["Uncomplicated Moon","Reven Swanson","marjorie","uncomplicated-moon-by-reven-swanson","2020/10/Fiddlers-Green-Amphitheater-Living-Walls-160624-JBirkey-5-e1602094444597-600x400.jpg"],
+ ["Victorian Diorama","Seasonal installation","marjorie","victorian-diorama","2020/09/IMG_2227-600x400.jpg"],
+ ["Windsong III","Robert Mangold","marjorie","windsong-iii-robert-mangold","2020/10/Windsong-05.04.21-001-600x400.jpg"],
+ ["Winged Lion of St. Mark","","marjorie","winged-lion-of-st-mark","2020/10/WingedLionofStMarks-e1602100340238-600x400.jpg"],
+ ["Woman of Authority","Agnes Nyanhongo","marjorie","woman-of-authority-by-agnes-nyanhongo","2020/10/Woman-of-Authority-by-Agnes-Nyanhongo-e1602100685233-600x400.jpg"],
+ ["Mother Bear & Cubs","","marjorie","mother-bear-cubs","2020/09/DSC_3452-e1602097904172-600x400.jpg"],
+ ["St. Francis of Assisi","Harry Marinsky","marjorie","st-francis-by-harry-marinsky","2020/10/image-10-e1602093042352-600x342.jpeg"],
+ ["Stargazer","Madeline Wiener","marjorie","stargazer-by-madeline-wiener","2020/10/IMG_2240-600x400.jpeg"],
+ ["Veneto Lion","","marjorie","veneto-lion","2020/10/image-11-e1602095468269-600x400.jpeg"],
+ ["Wolf Angel","Guy Dill","marjorie","wolf-angel-by-guy-dill","2020/09/Wolf-Angel_Dill-e1601145460746.jpg"],
+ ["Luke the Evangelist","Ivan Meštrović","madden","luke-the-evangelist-by-ivan-mestrovic","2020/10/IMG_6857-2-600x400.jpeg"],
+ ["Rodger","Craig Marshall Smith","madden","rodger-by-craig-marshall-smith","2020/09/CMS_Rodger_LG-e1602863491793-600x400.jpg"],
+ ["Amphitheatre Mural Program","Various artists","fiddlers","fgamuralprogram","2022/05/AJ-Mural-Final-06.07.22-0010-scaled-e1654788755512-600x400.jpg"],
+ ["Panoramic Living Mural","","fiddlers","panoramic-living-mural","2020/10/LivingWallFinal-07.09.23-010-600x400.jpg"],
+ ["Stairway to Heaven","Reven Swanson","fiddlers","stairway-to-heaven-by-reven-swanson","2020/10/HAL02379-scaled-e1602693928374-600x400.jpg"],
+ ["All the Right Moves","Erick C. Johnson","plaza","alltherightmoves","2024/08/johnson-at-JA3-600x400.png"],
+ ["Bear","Beniamino Bufano","plaza","bear-by-beniamino-bufano","2020/09/DSC_0564-scaled-e1602175520178-600x400.jpg"],
+ ["Birth of Venus","Emilio Martelli","plaza","birth-of-venus-by-emilio-martelli","2020/10/birth-of-venus-photo-set_Page_1-600x400.jpg"],
+ ["Bronze Logs","Dennis Leon","plaza","bronze-logs-dennis-leon","2020/09/BronzeLogs-e1602179283534-600x400.jpg"],
+ ["Bust of David","Giovanni Antoniazzi","plaza","bust-of-david-by-giovanni-antoniazzi","2020/09/DSC_0551-scaled-e1602180148104-600x400.jpg"],
+ ["Disco Emergente","Arnaldo Pomodoro","plaza","disco-emergente-by-arnaldo-pomodoro","2020/09/IMG_0017.jpg"],
+ ["Duo","Lin Emery","plaza","duo-by-lin-emery","2025/10/IMG_0645-600x400.jpeg"],
+ ["Five Dolphins","Giovanni Antoniazzi","plaza","five-dolphins-by-giovanni-antoniazzi","2020/09/DSC_0463-scaled-e1602192226273-600x400.jpg"],
+ ["Flywheel","Larry Kirkland","plaza","flywheel-by-larry-kirkland","2020/09/Flywheel-Kirkland-e1602181305967.jpg"],
+ ["Hippopotamus","Giovanni Antoniazzi","plaza","hippopotamus-by-giovanni-antoniazzi","2020/09/DSC_3454-e1602182360907-600x400.jpg"],
+ ["Jealousy","Harry Marinsky","plaza","jealousy-by-harry-marinsky","2020/10/Marinsky_jealousy-e1602185789194-600x400.jpg"],
+ ["La Primavera","Emilio Martelli","plaza","la-primavera-by-emilio-martelli","2020/10/Primavera_Martelli-1.jpg"],
+ ["Mercury","","plaza","mercury","2020/09/DSC_1073-rotated-e1602186475587-600x400.jpg"],
+ ["Nest","Erick Johnson","plaza","nest-by-erick-johnson","2020/09/P1030999-scaled-e1602187473967-600x400.jpg"],
+ ["Of One Heart","George Carlson","plaza","of-one-heart-by-george-carlson","2020/09/DSC_1048-e1602188573126-600x400.jpg"],
+ ["Psychedilly Rose II","Steve J. Urry","plaza","psychedilly-rose-ii-by-steve-j-urry","2020/09/DSC_2603-e1601056789202.jpg"],
+ ["The Bearing Wall","Daniel Ostermiller","plaza","the-bearing-wall-by-daniel-ostermiller","2020/09/The-Bearing-Wall-e1602191691884-600x400.jpg"],
+ ["The Rearing Elephant","Daniel Ostermiller","plaza","the-rearing-elephant-daniel-ostermiller","2020/09/IMG_9236-e1602193620480-600x400.jpg"],
+ ["Bella Donna","Woods Davy","plaza","bella-donna-by-woods-davy","2020/09/Bella-Donna-Woods-Davy-scaled-e1602007524616.jpg"],
+ ["PTTSAAES","Robert Mangold","plaza","pttsaaes-by-robert-mangold","2020/10/PTTSAAES.4.21.14-600x400.jpg"],
+ ["Anja's Column","John Adduci","plaza","anjas-column-by-john-adduci","2020/09/Anjas-Column-by-John-Adduci-Detail-scaled.jpg"],
+ ["In Stance","Stephen Hokanson","plaza","in-stance-by-stephen-hockanson","2020/09/InstanceHokanson-e1601053527900.jpg"],
+ ["Child of Peace","Lynn Tillery","englewood","child-of-peace-by-lynn-tillery","2020/09/IMG_2665-scaled-e1604697101323-600x400.jpg"],
+ ["Design and Build Alumni: Place Making","Design and Build students","englewood","designandbuildplacemaking2020","2020/09/IMG_5504-scaled-e1600899905130.jpeg"],
+ ["Tranquility","Englewood High School students","englewood","tranquility","2020/11/K15A6000-600x400.jpg"],
+ ["Bathroom People","Andy Miller","englewood","bathroom-people-by-andy-miller","2020/09/IMG_9275-1-scaled-e1601485062902.jpg"],
+ ["Brooklyn Bridge","Red Grooms & Mimi Gross","englewood","brooklyn-bridge-by-red-grooms","2020/09/Brooklyn-Bridge-e1601485441644.jpg"],
+ ["Greek Temple Dogs","","englewood","greek-temple-dogs","2020/09/a17-scaled-e1601487421662.jpg"],
+ ["Horizon","Amy Laugesen","englewood","horizon-by-amy-laugesen","2020/09/Horizon_Laugesen-e1601488108640.jpg"],
+ ["Marble On My Mind","Madeline Wiener","englewood","marble-on-my-mind-by-madeline-wiener","2020/09/DSC_3520-e1601488726795.jpg"],
+ ["Marzocco Lions","","englewood","marzocco-lions","2020/09/MarzoccoLionsEnglewood.4.21.14-1-600x400.jpg"],
+ ["Mujer Del Lago","Tom Ware","englewood","mujer-del-lago-by-tom-ware","2020/09/IMG_0056-e1601493888305.jpg"],
+ ["Porcellino","","englewood","porcellino","2020/09/PorcellinoTacca-e1601580520480.jpg"],
+ ["The Dream Tree","Todd Siler","englewood","the-dream-tree-by-todd-siler","2020/10/MOAWalkingTour1240.4.21.14-600x400.jpg"],
+ ["Rose Water Chandelier","Corwin Bell","englewood","rosewater-chandelier","2020/09/Rosewater-Chandelier-by-Corwin-Bell-Detail-scaled.jpg",1],
+ ["U.P., Up #1","Randy Jewart","englewood","u-p-up-1-by-randy-jewart","2020/09/U.P.-Randy-Jewart-Detail-scaled.jpg",1],
+ ["Little Bear","Giovanni Antoniazzi","englewood","little-bear-by-giovanni-antoniazzi","2020/10/HAL02808-scaled-e1602789711913-600x400.jpg",1],
+ ["Blatant Proposals","James Mitchell","englewood","blatant-proposals-by-james-mitchell","2020/09/Blatant-Proposals-by-James-Mitchell-Detail-scaled.jpg"],
+ ["Dervish","Darryl Pottorf","englewood","dervish-by-darryl-pottorf","2020/09/Dervish-Darryl-Pottdorf-scaled.jpg"],
+ ["Franconia F. Horse II","John Hock","englewood","franconia-f-horse-ii-by-john-hock","2020/09/Franconia-F.-Horse-II-by-John-Hock-Detail-scaled.jpg"],
+ ["Mountain","Joel Perlman","englewood","mountain-by-joel-perlman","2020/09/Mountain-by-Joel-Perlman-Detail-scaled.jpg"],
+ ["Night Movement","Jon Isherwood","englewood","night-movement-by-jon-isherwood","2020/09/IMG_3870-scaled-e1604696940883-600x400.jpg"]
+];
+const isOpen = w => PLACES[w[2]].open && !w[5];
+
+const params=new URLSearchParams(window.MOA_QS||location.search);
+let place=params.get("place")||"all";
+const qEl=document.getElementById("q"), openEl=document.getElementById("open");
+qEl.value=params.get("q")||""; openEl.checked=params.get("open")==="1";
+
+const CHIPS=[["all","Everywhere"],["greenwood","Greenwood Village"],["marjorie","Marjorie Park"],["plaza","Greenwood Plaza"],["fiddlers","Fiddler's Green"],["madden","Madden Gallery"],["englewood","Englewood"]];
+const inPlace=(w,p)=>p==="all"||w[2]===p||(p==="greenwood"&&PLACES[w[2]].city==="greenwood");
+
+function render(){
+  const q=qEl.value.trim().toLowerCase();
+  const list=W.filter(w=>inPlace(w,place)&&(!openEl.checked||isOpen(w))&&(!q||(w[0]+" "+w[1]).toLowerCase().includes(q)));
+  document.getElementById("chips").innerHTML=CHIPS.map(([k,l])=>{
+    const n=W.filter(w=>inPlace(w,k)&&(!openEl.checked||isOpen(w))).length;
+    return `<button data-k="${k}" aria-pressed="${k===place}">${l}<small>${n}</small></button>`}).join("");
+  document.getElementById("count").textContent=`Showing ${list.length} work${list.length===1?"":"s"}`+(openEl.checked?" you can see any time, free":"");
+  const wh=document.getElementById("where"), P=PLACES[place];
+  if(P){wh.style.display="block";wh.innerHTML=`<b>${P.name}</b><p>${P.info} <a href="${P.link[0]}">${P.link[1]} &rarr;</a></p>`}else wh.style.display="none";
+  document.getElementById("grid").innerHTML=list.map(w=>{
+    const href=w[3].startsWith("LOCAL:")?w[3].slice(6):LIVE+"/"+w[3]+"/";
+    const badge=isOpen(w)?'<span class="badge b-open">Open 24/7</span>':`<span class="badge b-park">${PLACES[w[2]].name.split(" and ")[0]}</span>`;
+    return `<a class="work" href="${href}"><div class="ph"><img src="${IMG(w[4])}" alt="${w[0]}${w[1]?" by "+w[1]:""}" loading="lazy">${badge}</div><b>${w[0]}</b><span>${w[1]?w[1]+" · ":""}${PLACES[w[2]].name}</span></a>`}).join("");
+  document.getElementById("none").style.display=list.length?"none":"block";
+  const u=new URLSearchParams(); if(place!=="all")u.set("place",place); if(openEl.checked)u.set("open","1"); if(q)u.set("q",q);
+  try{history.replaceState(null,"",location.pathname+(u.toString()?"?"+u:""))}catch(e){} // some browsers block this on local files
+}
+document.getElementById("chips").addEventListener("click",e=>{const b=e.target.closest("button"); if(b){place=b.dataset.k;render()}});
+qEl.addEventListener("input",render); openEl.addEventListener("change",render);
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+# Practice copy of the MOA website redesign. Plain files, no build step.
+[build]
+  publish = "."
+
+# Keep the practice copy out of search engines.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
