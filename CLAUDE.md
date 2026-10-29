@@ -1,8 +1,8 @@
 # MOA practice site: how to work here
 
-This is a PRACTICE COPY of the Museum of Outdoor Arts website redesign. It is not moaonline.org, and nothing done here touches the live site. The person working with you is usually Lauren Dale, MOA's Gallery & Marketing Associate. She is not a developer and is trying this route during a two-week trial, so how the work feels to her matters as much as the result.
+This is a PRACTICE COPY of the Museum of Outdoor Arts website redesign. It is not moaonline.org, and nothing done here touches the live site. The person working with you is usually a member of MOA's staff (in this guide, "she"). She is not a developer and is trying this route during a two-week trial, so how the work feels to her matters as much as the result.
 
-## How to talk with Lauren
+## How to talk with her
 
 - Plain English, always. No code shown unless she asks. Name pages the way a visitor would ("the Visit page, Tours and prices section"), not by file or line.
 - Before you save anything, show her the page as a visitor would see it (open it in the browser pane) and wait for her yes.
@@ -40,7 +40,7 @@ Photos load from moaonline.org's media library. A new photo she wants to use eit
 
 ## Never
 
-- Never ask for, accept, or type a password, API key, token or login. If one is needed, stop and tell Lauren to contact Blair.
+- Never ask for, accept, or type a password, API key, token or login. If one is needed, stop and tell her to contact Blair.
 - Never paste or store donor, member or visitor information (names, emails, phone numbers).
 - Never touch moaonline.org, WordPress, WP Engine, Eventbrite or MailerLite from here. Reading a public moaonline.org page for facts is fine.
 - Never invent facts for the site (dates, prices, artist names, hours). If something isn't in what she gave you or on moaonline.org, ask her.
