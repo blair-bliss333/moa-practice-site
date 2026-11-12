@@ -35,6 +35,10 @@ One update at a time: finish, review and merge one before starting the next.
 | The art collection list and filters | `collection.html`, the `W` list (one row per artwork) |
 | A single artwork page (the pattern for new ones) | `artwork-cheshire-cat.html` |
 | A single event page (the pattern for new ones) | `event-wonderland.html` |
+| Victorian Diorama: every seasonal installation, current and past | `dioramas.js`, the `DIORAMAS` list (newest first; `current:true` marks the one on view) |
+| Victorian Diorama main page, and the one page every installation uses | `victorian-diorama.html`, `diorama.html` (opened as `diorama.html?s=<id>`) |
+| The current diorama on homepage B ("Now on view") | `site.js`, its entry in the `EVENTS` list (`notInComingUp:true` keeps it out of homepage A's "Coming up") |
+| The Victorian Diorama tile on homepage A ("The art" section) | `index.html`; it names the current installation from `dioramas.js` by itself |
 
 Photos load from moaonline.org's media library. A new photo she wants to use either comes from there (paste its address) or gets added to this folder.
 

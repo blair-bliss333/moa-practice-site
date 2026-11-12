@@ -175,7 +175,7 @@ header.site{background:rgba(255,255,255,.97)}
 /* Now on view: the same calendar as every other page, so past events never show */
 const on=document.getElementById("rail-on");
 liveEvents().forEach(e=>{
-  const when = !e.start ? "Ongoing" : (e.start!==e.end && toDate(e.start)<=TODAY) ? "Through "+fmt(toDate(e.end),{month:"long",day:"numeric"}) : dateLabel(e);
+  const when = e.label ? e.label : !e.start ? "Ongoing" : (e.start!==e.end && toDate(e.start)<=TODAY) ? "Through "+fmt(toDate(e.end),{month:"long",day:"numeric"}) : dateLabel(e);
   const kind = e.kind.replace(/^Ongoing · /,"");
   on.insertAdjacentHTML("beforeend",`<a href="${e.url}"><img src="${IMG(e.img)}" alt="" loading="lazy"><h3>${e.title}</h3><p class="when">${when}</p><p>${kind}</p></a>`);
 });

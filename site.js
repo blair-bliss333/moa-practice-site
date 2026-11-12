@@ -10,6 +10,7 @@ const EVENTS = [
   {start:"2026-10-10", end:"2026-10-10", title:"80's Costume Party with 6 Million Dollar Band", kind:"Marjorie Park LIVE! · Doors 6pm, music 7 to 9pm", park:true, blurb:"Colorado's premier 80s dance band. Leg warmers strongly encouraged.", img:"2026/09/image-600x400.jpeg", url:LIVE+"/6mdb/", cta:"Get tickets"},
   {start:"2026-10-23", end:"2026-10-23", title:"Immersive Movie Night: Alice in Wonderland", kind:"Family friendly · Marjorie Park", park:true, blurb:"Croquet, curiosities, the Mad Hatter and Tim Burton's Alice under the stars. Costumes encouraged.", img:"2026/09/Immersive-Movie-Night-600x400.png", url:"event-wonderland.html", cta:"Get tickets"},
   {start:"2026-08-14", end:"2026-10-23", title:"VIEWFINDERS: A Colorado Photography Exhibition", kind:"Exhibition · Madden Gallery · Free", blurb:"More than 100 works by historic and contemporary Colorado photographers.", img:"2026/07/Viewfinders-Postcard-1-600x400.jpg", url:LIVE+"/viewfinders/", cta:"Register free"},
+  {start:null, end:null, label:"Spring / Summer 2026", notInComingUp:true, title:"Victorian Diorama: Echoes of Spring", kind:"Victorian Diorama · Free, 24/7", blurb:"A whimsical reading nook overtaken by moss, mushrooms and spring blooms, lit up after dark. Outside the north fence of Marjorie Park.", img:"2020/09/IMG_2227-600x400.jpg", url:"diorama.html?s=spring-summer-2026", cta:"See the installation"},
   {start:null, end:null, title:"Cabinet of Curiosities and Impossibilities", kind:"Ongoing · By guided tour", blurb:"Lonnie Hanzon's permanent installation at Marjorie Park.", img:"2020/09/CabPressPics-04.26.24-137-600x400.jpg", url:"visit.html#tours", cta:"Book a tour"}
 ];
 /* Marjorie Park opens 10am to 4pm to everyone on these SCFD Free Days */
@@ -22,6 +23,7 @@ const fmt = (x,o) => x.toLocaleDateString("en-US",o);
 const short = x => fmt(x,{weekday:"short",month:"short",day:"numeric"});
 
 function dateLabel(e){
+  if(e.label) return e.label;
   if(!e.start) return "Ongoing";
   const s=toDate(e.start), en=toDate(e.end);
   if(+s===+en) return short(s);
