@@ -70,6 +70,8 @@
 .tile p{margin:4px 0 0;font-size:14.5px;opacity:.92}
 .tile.big{grid-row:span 2;min-height:500px}
 .tile.big h3{font-size:30px}
+.tile.wide{grid-column:1/-1;min-height:220px}
+.tile.wide img{object-position:50% 45%}
 .always{display:inline-block;background:var(--gold);color:#fff;font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;margin-bottom:10px}
 
 .prog{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
@@ -189,6 +191,10 @@
           <img src="https://moaonline.org/wp-content/uploads/2020/09/CabPressPics-04.26.24-137-600x400.jpg" alt="Inside the Cabinet of Curiosities and Impossibilities">
           <div><h3>Cabinet of Curiosities</h3><p>Lonnie Hanzon's masterwork, by guided tour</p></div>
         </a>
+        <a class="tile wide" href="victorian-diorama.html">
+          <img src="https://moaonline.org/wp-content/uploads/2020/09/IMG_2227-1000x750.jpg" alt="The Victorian Diorama lit up at night outside Marjorie Park">
+          <div><span class="always">Free · Open 24/7</span><h3>Victorian Diorama</h3><p id="diorama-now">A historic Victorian bus shelter with a new art installation each season</p></div>
+        </a>
       </div>
     </div>
   </section>
@@ -239,8 +245,12 @@
 </main>
 
 <script src="site.js"></script>
+<script src="dioramas.js"></script>
 <script>
-const box=document.getElementById("events"), live=liveEvents();
+/* The Victorian Diorama tile names whatever installation is current */
+if(DIORAMA_CURRENT) document.getElementById("diorama-now").textContent="Now on view: "+DIORAMA_CURRENT.title+" · "+DIORAMA_CURRENT.season;
+
+const box=document.getElementById("events"), live=liveEvents().filter(e=>!e.notInComingUp);
 if(!live.length) document.getElementById("events-empty").style.display="block";
 live.slice(0,5).forEach((e,i)=>{
   const a=document.createElement("a"); a.className="ev"+(i===0?" lead":""); a.href=e.url;

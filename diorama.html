@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Victorian Diorama | Museum of Outdoor Arts</title>
+<meta name="description" content="A seasonal installation in MOA's Victorian Diorama, outside Marjorie Park in Greenwood Village, CO. Free and open 24/7.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+.art{display:grid;grid-template-columns:1.4fr 1fr;gap:44px;align-items:start;padding-top:18px}
+.art img.main{border-radius:var(--radius);width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--line)}
+.art h1{font-size:clamp(32px,4.2vw,50px);line-height:1.05;margin:8px 0 6px}
+.art .by{font-size:20px;color:var(--muted);margin:0}
+.art .eyebrow{color:var(--rust)}
+.flag{display:inline-block;margin-bottom:6px}
+.label{list-style:none;padding:0;margin:22px 0 0}
+.label li{display:grid;grid-template-columns:110px 1fr;gap:12px;padding:10px 0;border-top:1px solid var(--line);font-size:16px}
+.label li b{font-weight:500;color:var(--teal)}
+.label a{color:var(--teal)}
+.see{padding:20px;margin-top:22px}
+.see h2{font-size:18px;margin:0 0 4px}
+.see p{margin:0;color:var(--muted);font-size:15px}
+.see .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.story{max-width:68ch;margin-top:56px}
+.story h2{font-size:28px;margin:36px 0 12px}
+.story h2:first-child{margin-top:0}
+.story p{margin:0 0 14px}
+.story blockquote{margin:0 0 14px;padding:4px 0 4px 20px;border-left:3px solid var(--gold);color:var(--teal-deep)}
+.story blockquote p{margin:0 0 10px}
+.pager{display:flex;justify-content:space-between;gap:16px;margin-top:56px;padding-top:22px;border-top:1px solid var(--line)}
+.pager a{color:var(--teal);font-weight:500;text-decoration:none;max-width:48%}
+.pager a:hover{text-decoration:underline}
+.pager small{display:block;color:var(--muted);font-weight:400;font-size:14px}
+.video{position:relative;aspect-ratio:16/9;border-radius:var(--radius);overflow:hidden;background:var(--teal-deep);margin:0 0 14px}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.missing{padding:60px 0}
+@media (max-width:980px){.art{grid-template-columns:1fr}}
+@media (max-width:640px){.label li{grid-template-columns:96px 1fr}}
+</style>
+</head>
+<body data-section="art">
+<main id="content" class="wrap">
+  <div class="crumbs"><a href="index.html">Home</a> / <a href="collection.html">The Art</a> / <a href="collection.html?place=marjorie">Marjorie Park</a> / <a href="victorian-diorama.html">Victorian Diorama</a> / <span id="crumb"></span></div>
+  <div id="page"></div>
+</main>
+
+<script src="site.js"></script>
+<script src="dioramas.js"></script>
+<script>
+const id = new URLSearchParams(location.search).get("s");
+const i = DIORAMAS.findIndex(x => x.id === id);
+const d = DIORAMAS[i] || DIORAMA_CURRENT;
+const embed = u => {
+  if (!u) return "";
+  let m = u.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]+)/);
+  if (m) return "https://www.youtube-nocookie.com/embed/" + m[1];
+  m = u.match(/vimeo\.com\/(\d+)/);
+  if (m) return "https://player.vimeo.com/video/" + m[1];
+  return "";
+};
+const paras = a => (a||[]).map(p => `<p>${p}</p>`).join("");
+
+document.title = `${d.title}, ${d.season} | Victorian Diorama | Museum of Outdoor Arts`;
+document.querySelector('meta[name="description"]').content =
+  `${d.title}${d.credits&&d.credits[0]?" by "+d.credits[0][1]:""}, the ${d.season} installation in MOA's Victorian Diorama outside Marjorie Park, Greenwood Village, CO.`;
+document.getElementById("crumb").textContent = d.season;
+
+const rows = (d.credits||[]).map(([k,v]) => `<li><b>${k}</b><span>${v}</span></li>`).join("")
+  + `<li><b>${d.current ? "On view" : "Was on view"}</b><span>${d.dates || d.season}</span></li>`
+  + `<li><b>Where</b><span><a href="victorian-diorama.html">The Victorian Diorama</a>, just outside the north fence of Marjorie Park, Greenwood Village</span></li>`;
+
+const visit = d.current
+  ? `<div class="card see"><span class="status s-open"><i></i>On view now · free, 24/7</span><h2 style="margin-top:12px">Go see it</h2><p>The diorama sits just outside the north fence of Marjorie Park, so you can visit any time, day or night. It is lit after dark until midnight.</p><div class="btns"><a class="btn rust" href="https://maps.google.com/?q=6331+S+Fiddlers+Green+Circle+Greenwood+Village+CO+80111">Directions</a><a class="btn line" href="victorian-diorama.html">About the Diorama</a></div></div>`
+  : `<div class="card see"><h2>This installation has closed</h2><p>A new installation fills the diorama each season.</p><div class="btns"><a class="btn rust" href="victorian-diorama.html#current">See what's on view now</a></div></div>`;
+
+const newer = DIORAMAS[i-1], older = DIORAMAS[i+1];
+document.getElementById("page").innerHTML = `
+  <div class="art">
+    <img class="main" src="${IMG(d.img)}" alt="${d.imgAlt||""}">
+    <div>
+      <div class="eyebrow">Victorian Diorama · ${d.season}</div>
+      <h1>${d.title}</h1>
+      <p class="by">${d.credits&&d.credits[0]?d.credits[0][1]+", ":""}${d.year}</p>
+      <ul class="label">${rows}</ul>
+      ${visit}
+    </div>
+  </div>
+  <section class="story">
+    ${embed(d.video) ? `<h2>Watch</h2><div class="video"><iframe src="${embed(d.video)}" title="Video: ${d.title}, Victorian Diorama ${d.season}" loading="lazy" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>` : ""}
+    ${d.about ? `<h2>About the installation</h2>${paras(d.about)}` : ""}
+    ${d.bio ? `<h2>About the artist</h2>${paras(d.bio)}` : ""}
+    ${d.statement ? `<h2>Artist statement</h2><blockquote>${paras(d.statement)}</blockquote>` : ""}
+  </section>
+  <nav class="pager" aria-label="More installations">
+    ${newer ? `<a href="diorama.html?s=${newer.id}">&larr; ${newer.title}<small>${newer.season}</small></a>` : "<span></span>"}
+    ${older ? `<a href="diorama.html?s=${older.id}" style="text-align:right">${older.title} &rarr;<small>${older.season}</small></a>` : `<a href="victorian-diorama.html#past" style="text-align:right">All installations &rarr;</a>`}
+  </nav>`;
+</script>
+</body>
+</html>
